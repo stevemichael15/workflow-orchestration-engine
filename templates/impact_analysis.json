@@ -1,0 +1,23 @@
+{
+  "template_id": "impact_analysis",
+  "steps": [
+    {
+      "name": "load_citizens",
+      "task_type": "load_citizen_batch",
+      "output_mapping": "citizens"
+    },
+    {
+      "name": "parallel_evaluation",
+      "task_type": "parallel_execution",
+      "config": {
+        "max_workers": 20
+      },
+      "output_mapping": "parallel_results"
+    },
+    {
+      "name": "build_report",
+      "task_type": "report_builder",
+      "output_mapping": "impact_report"
+    }
+  ]
+}

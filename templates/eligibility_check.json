@@ -1,0 +1,25 @@
+{
+  "template_id": "eligibility_check",
+  "steps": [
+    {
+      "name": "fetch_citizen",
+      "task_type": "mock_db_lookup",
+      "output_mapping": "citizen"
+    },
+    {
+      "name": "fetch_scheme_rules",
+      "task_type": "mock_doc_lookup",
+      "output_mapping": "scheme_rules"
+    },
+    {
+      "name": "evaluate_rules",
+      "task_type": "rule_engine",
+      "output_mapping": "rule_result"
+    },
+    {
+      "name": "make_decision",
+      "task_type": "decision_logic",
+      "output_mapping": "decision"
+    }
+  ]
+}
