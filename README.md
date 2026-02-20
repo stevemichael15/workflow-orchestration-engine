@@ -200,18 +200,3 @@ Then open: http://localhost:8000/docs
 - Cryptographic audit verification (hash chaining)
 
 ---
-
-## Demo Notes
-
-The demo video shows:
-
-- All three workflows executing
-- Parallel impact analysis timing
-- Audit trail queries
-- Appeal flow with immutability verification
-
----
-
-## Reflection
-
-Answers to system design reflection questions are provided in `answers.md`.
