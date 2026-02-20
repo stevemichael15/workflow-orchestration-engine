@@ -164,7 +164,7 @@ workflow-engine/
 ### Steps
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/stevemichael15/workflow-orchestration-engine.git
 cd workflow-engine
 pip install -r requirements.txt
 psql -f schema.sql
