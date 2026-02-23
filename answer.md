@@ -5,7 +5,7 @@ All responses are based strictly on the **current implementation** of the workfl
 
 ---
 
-## 6. Your parallel_execution step runs 500 workers. If 12 of them fail mid-run, what does your engine do?
+## 1. Your parallel_execution step runs 500 workers. If 12 of them fail mid-run, what does your engine do?
 
 ### Current behavior (exact implementation)
 
@@ -36,7 +36,7 @@ to allow partial success reporting, but this is not implemented by design.
 
 ---
 
-## 7. A new template needs a step type that calls an external API that sometimes takes 30 seconds. How does your engine handle this?
+## 2. A new template needs a step type that calls an external API that sometimes takes 30 seconds. How does your engine handle this?
 
 ### Current behavior
 
@@ -61,7 +61,7 @@ The current architecture does not prevent this evolution.
 
 ---
 
-## 8. An auditor asks: “Prove to me that audit_trail row 45821 has not been tampered with.”
+## 3. An auditor asks: “Prove to me that audit_trail row 45821 has not been tampered with.”
 
 ### Guarantees in the current system
 
@@ -72,7 +72,7 @@ The current architecture does not prevent this evolution.
 
 ---
 
-## 9. Templates are defined as JSON. What are the top 3 limitations at scale?
+## 4. Templates are defined as JSON. What are the top 3 limitations at scale?
 
 ### Limitation 1: Weak schema enforcement
 
@@ -104,7 +104,7 @@ Compile templates into an internal execution graph or introduce a lightweight DS
 
 ---
 
-## 10. If the engine had to process 50,000 citizens instead of 500, what would break first?
+## 5. If the engine had to process 50,000 citizens instead of 500, what would break first?
 
 ### What breaks first
 
