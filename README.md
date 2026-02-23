@@ -82,9 +82,19 @@ Performance requirement:
 
 Handles re-evaluation requests after rejection by re-running the eligibility check workflow with new data.
 
+The appeal processing uses a dedicated template (`appeal_processing.json`) that mirrors the eligibility check steps:
+
+1. Fetches citizen data (with corrected evidence)
+2. Fetches scheme rules
+3. Evaluates eligibility rules
+4. Makes a decision:
+   - `ELIGIBLE`
+   - `NOT_ELIGIBLE`
+   - `NEEDS_REVIEW`
+
 Key guarantees:
 - Original workflow instance is **never modified**
-- A new workflow instance is created using the same eligibility_check template
+- A new workflow instance is created using the appeal processing template
 - Both decisions are linked via the `appeals` table
 
 ---
@@ -147,7 +157,7 @@ workflow-engine/
 │   └── routes.py              # All API endpoints
 ├── schema.sql                 # Database schema
 ├── requirements.txt           # Python dependencies
-├── answers.md                 # Design documentation
+├── answer.md                  # Design documentation
 └── README.md                  # Project documentation
 ```
 
@@ -160,16 +170,35 @@ workflow-engine/
 - Python 3.9+
 - PostgreSQL
 - pip
+- Docker (optional, for containerized setup)
 
 ### Steps
 
+#### Local Development Setup
+
 ```bash
-git clone <repository-url>
+git clone https://github.com/stevemichael15/workflow-orchestration-engine.git
 cd workflow-engine
 pip install -r requirements.txt
 psql -f schema.sql
 uvicorn main:app --reload
 ```
+
+#### Docker Setup
+
+For a containerized environment:
+
+```bash
+git clone https://github.com/stevemichael15/workflow-orchestration-engine.git
+cd workflow-engine
+docker-compose up --build
+```
+
+This will start:
+- PostgreSQL database on port 5432
+- FastAPI application on port 8000
+
+The database schema is automatically initialized via the init script in `schema.sql`.
 
 Then open: http://localhost:8000/docs
 
@@ -192,26 +221,13 @@ Then open: http://localhost:8000/docs
 
 ---
 
-## Future Improvements
+## Design Reflections
 
-- Distributed task execution (Celery/RabbitMQ)
-- Workflow versioning
-- Step-level retries with compensation logic
-- Cryptographic audit verification (hash chaining)
+For detailed answers to design questions and architectural decisions, see [answer.md](answer.md). This document covers topics such as:
 
----
+- Handling partial failures in parallel execution
+- Managing long-running external API calls
+- Audit trail tamper-proofing
+- JSON template limitations at scale
+- Scalability considerations for large datasets
 
-## Demo Notes
-
-The demo video shows:
-
-- All three workflows executing
-- Parallel impact analysis timing
-- Audit trail queries
-- Appeal flow with immutability verification
-
----
-
-## Reflection
-
-Answers to system design reflection questions are provided in `answers.md`.

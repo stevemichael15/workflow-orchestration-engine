@@ -1,0 +1,27 @@
+  {
+  "template_id": "appeal_processing",
+  "description": "Re-evaluates eligibility based on corrected evidence while preserving original decision immutability.",
+  "steps": [
+    {
+      "name": "fetch_citizen",
+      "task_type": "mock_db_lookup",
+      "output_mapping": "citizen"
+    },
+    {
+      "name": "fetch_scheme_rules",
+      "task_type": "mock_doc_lookup",
+      "output_mapping": "scheme_rules"
+    },
+    {
+      "name": "evaluate_rules",
+      "task_type": "rule_engine",
+      "output_mapping": "rule_result"
+    },
+    {
+      "name": "make_decision",
+      "task_type": "decision_logic",
+      "output_mapping": "decision"
+    }
+  ],
+  "notes": "This template mirrors the eligibility workflow and is invoked by the appeal API using merged original and corrected inputs."
+}
