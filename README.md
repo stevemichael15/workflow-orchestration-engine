@@ -230,4 +230,3 @@ For detailed answers to design questions and architectural decisions, see [answe
 - Audit trail tamper-proofing
 - JSON template limitations at scale
 - Scalability considerations for large datasets
-
